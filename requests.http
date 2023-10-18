@@ -1,0 +1,62 @@
+@base_url = http://127.0.0.1:8000/api/v1/
+
+
+############### Регистрация #####################
+POST {{base_url}}register/
+Content-Type: application/json
+
+{
+    "email": "test1@mail.ru",
+    "password": "290987Hecjfy",
+    "password_confirm": "290987Hecjfy"
+}
+
+################# Логин ###########################
+POST {{base_url}}login/
+Content-Type: application/json
+
+{
+    "email": "rus@gmail.com",
+    "password": "2909"
+}
+
+################# Получить все тарифы ###############
+###
+GET {{base_url}}tarifs/all/
+Content-Type: application/json
+
+
+################# Выбрать тариф #####################
+POST {{base_url}}tarifs/create/
+Content-Type: application/json
+Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443ff370
+
+{
+    "tarif": 1
+}
+
+#####
+################# Создание заказа ###############
+GET {{base_url}}orders/
+Content-Type: application/json
+Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443ff370
+
+###
+POST {{base_url}}orders/
+Content-Type: application/json
+Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443ff370
+
+{
+    "ordercontent": [
+        {
+            "fyle_type": "JPG",
+            "screen_resolution": "600x450",
+            "fon": "BLACK",
+            "scenario": "HORIZONTAL",
+            "table_rotation": "360",
+            "shot_count": "18",
+            "content": {"name": "Фото 360"}
+        }
+    ]
+
+}

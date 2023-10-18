@@ -1,0 +1,593 @@
+openapi: 3.0.3
+info:
+  title: FOTO_MIXCER
+  version: 1.0.0
+  description: '...'
+paths:
+  /api/v1/login/:
+    post:
+      operationId: login_create
+      tags:
+      - login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoginUser'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginUser'
+          description: ''
+  /api/v1/orders/:
+    get:
+      operationId: orders_list
+      tags:
+      - orders
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+          description: ''
+    post:
+      operationId: orders_create
+      tags:
+      - orders
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Order'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Order'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Order'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: ''
+  /api/v1/register/:
+    post:
+      operationId: register_create
+      tags:
+      - register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/RegisterUser'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUser'
+          description: ''
+  /api/v1/tarifs/all/:
+    get:
+      operationId: tarifs_all_list
+      tags:
+      - tarifs
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContentTarif'
+          description: ''
+  /api/v1/tarifs/all/{id}/:
+    get:
+      operationId: tarifs_all_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тип Контента.
+        required: true
+      tags:
+      - tarifs
+      security:
+      - knoxTokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentTarif'
+          description: ''
+  /api/v1/tarifs/create/:
+    get:
+      operationId: tarifs_create_list
+      tags:
+      - tarifs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ListUserTarif'
+          description: ''
+    post:
+      operationId: tarifs_create_create
+      tags:
+      - tarifs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserTarif'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserTarif'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserTarif'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserTarif'
+          description: ''
+  /api/v1/tarifs/create/{id}/:
+    get:
+      operationId: tarifs_create_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тариф пользователя.
+        required: true
+      tags:
+      - tarifs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserTarif'
+          description: ''
+    put:
+      operationId: tarifs_create_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тариф пользователя.
+        required: true
+      tags:
+      - tarifs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListUserTarif'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ListUserTarif'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ListUserTarif'
+        required: true
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserTarif'
+          description: ''
+    patch:
+      operationId: tarifs_create_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тариф пользователя.
+        required: true
+      tags:
+      - tarifs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedListUserTarif'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedListUserTarif'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedListUserTarif'
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListUserTarif'
+          description: ''
+    delete:
+      operationId: tarifs_create_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Тариф пользователя.
+        required: true
+      tags:
+      - tarifs
+      security:
+      - knoxTokenAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    BlankEnum:
+      enum:
+      - ''
+    Content:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название контента
+          maxLength: 200
+      required:
+      - id
+      - name
+    ContentTarif:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+          title: Название контента
+        tarif:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tarif'
+      required:
+      - id
+      - name
+      - tarif
+    CustomUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 25
+      required:
+      - email
+      - id
+    FonEnum:
+      enum:
+      - WHITE
+      - BLACK
+      - TRANSPARENT
+      type: string
+      description: |-
+        * `WHITE` - WHITE
+        * `BLACK` - BLACK
+        * `TRANSPARENT` - TRANSPARENT
+    FyleTypeEnum:
+      enum:
+      - JPG
+      - WEBP
+      - PNG
+      - GIF
+      type: string
+      description: |-
+        * `JPG` - JPG
+        * `WEBP` - WEBP
+        * `PNG` - PNG
+        * `GIF` - GIF
+    ListUserTarif:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        tarif:
+          type: integer
+        shot_remains:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Остаток кадров
+      required:
+      - id
+      - shot_remains
+      - tarif
+    LoginUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        password:
+          type: string
+          maxLength: 128
+      required:
+      - email
+      - id
+      - password
+    NullEnum:
+      enum:
+      - null
+    Order:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          $ref: '#/components/schemas/CustomUser'
+        ordercontent:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderContent'
+      required:
+      - id
+      - ordercontent
+      - user
+    OrderContent:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        fyle_type:
+          nullable: true
+          title: Тип файла
+          oneOf:
+          - $ref: '#/components/schemas/FyleTypeEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        screen_resolution:
+          nullable: true
+          title: Разрешение экрана
+          oneOf:
+          - $ref: '#/components/schemas/ScreenResolutionEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        fon:
+          nullable: true
+          title: Фон
+          oneOf:
+          - $ref: '#/components/schemas/FonEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        scenario:
+          nullable: true
+          title: Сценарий съемки
+          oneOf:
+          - $ref: '#/components/schemas/ScenarioEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        table_rotation:
+          nullable: true
+          title: Поворот стола
+          oneOf:
+          - $ref: '#/components/schemas/TableRotationEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        shot_count:
+          nullable: true
+          title: Кол-во кадров
+          oneOf:
+          - $ref: '#/components/schemas/ShotCountEnum'
+          - $ref: '#/components/schemas/BlankEnum'
+          - $ref: '#/components/schemas/NullEnum'
+        content:
+          $ref: '#/components/schemas/Content'
+      required:
+      - content
+      - id
+    PatchedListUserTarif:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        tarif:
+          type: integer
+        shot_remains:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Остаток кадров
+    RegisterUser:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        password:
+          type: string
+          maxLength: 128
+        password_confirm:
+          type: string
+          writeOnly: true
+      required:
+      - email
+      - password
+      - password_confirm
+    ScenarioEnum:
+      enum:
+      - VERTICAL
+      - HORIZONTAL
+      - SPIRAL
+      type: string
+      description: |-
+        * `VERTICAL` - VERTICAL
+        * `HORIZONTAL` - HORIZONTAL
+        * `SPIRAL` - SPIRAL
+    ScreenResolutionEnum:
+      enum:
+      - 400x300
+      - 600x450
+      - 800x600
+      - 1200x900
+      - 1600x1200
+      type: string
+      description: |-
+        * `400x300` - 400x300
+        * `600x450` - 600x450
+        * `800x600` - 800x600
+        * `1200x900` - 1200x900
+        * `1600x1200` - 1600x1200
+    ShotCountEnum:
+      enum:
+      - '4'
+      - '8'
+      - '12'
+      - '16'
+      - '18'
+      - '24'
+      - '36'
+      type: string
+      description: |-
+        * `4` - 4
+        * `8` - 8
+        * `12` - 12
+        * `16` - 16
+        * `18` - 18
+        * `24` - 24
+        * `36` - 36
+    TableRotationEnum:
+      enum:
+      - '360'
+      - '720'
+      type: string
+      description: |-
+        * `360` - 360
+        * `720` - 720
+    Tarif:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название тарифа
+          maxLength: 100
+        desc:
+          type: string
+          title: Описание тарифа
+          maxLength: 900
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          title: Базовая стоиость * на коэф контента
+        shot_count:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Количество кадров (шт)
+      required:
+      - desc
+      - id
+      - name
+      - shot_count
+    UserTarif:
+      type: object
+      properties:
+        tarif:
+          type: integer
+        user:
+          type: integer
+          readOnly: true
+        shot_remains:
+          type: integer
+          readOnly: true
+          title: Остаток кадров
+      required:
+      - shot_remains
+      - tarif
+      - user
+  securitySchemes:
+    knoxTokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"
