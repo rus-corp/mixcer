@@ -12,7 +12,6 @@ class OrderView(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
     permission_classes = (permissions.IsAuthenticated,)
     
-    
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
         

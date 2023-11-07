@@ -383,6 +383,7 @@ components:
           maxLength: 255
         password:
           type: string
+          title: Пароль
           maxLength: 128
       required:
       - email
@@ -398,7 +399,9 @@ components:
           type: integer
           readOnly: true
         user:
-          $ref: '#/components/schemas/CustomUser'
+          allOf:
+          - $ref: '#/components/schemas/CustomUser'
+          readOnly: true
         ordercontent:
           type: array
           items:
@@ -482,6 +485,7 @@ components:
           maxLength: 255
         password:
           type: string
+          title: Пароль
           maxLength: 128
         password_confirm:
           type: string

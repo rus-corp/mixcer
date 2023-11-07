@@ -30,7 +30,6 @@ class UserTarifSerializer(serializers.ModelSerializer):
         fields = ['tarif', 'user', 'shot_remains']
         read_only_fields = ['user', 'shot_remains']
         
-        
     def create(self, validated_data):
         tarif_data = validated_data.pop('tarif')
         shot_remains = tarif_data.shot_count

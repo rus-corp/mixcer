@@ -16,8 +16,8 @@ POST {{base_url}}login/
 Content-Type: application/json
 
 {
-    "email": "rus@gmail.com",
-    "password": "2909"
+    "email": "test1@mail.ru",
+    "password": "290987Hecjfy"
 }
 
 ################# Получить все тарифы ###############
@@ -39,12 +39,12 @@ Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443
 ################# Создание заказа ###############
 GET {{base_url}}orders/
 Content-Type: application/json
-Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443ff370
+Authorization: TOKEN d8c5ea27ae31e2e59655ffa4ca0153596a15f646b4a6f4377fee9a1f91956e63
 
-###
+###z
 POST {{base_url}}orders/
 Content-Type: application/json
-Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443ff370
+Authorization: TOKEN d8c5ea27ae31e2e59655ffa4ca0153596a15f646b4a6f4377fee9a1f91956e63
 
 {
     "ordercontent": [
@@ -60,3 +60,6 @@ Authorization: TOKEN e77e6ffa39a35db007b772fd65ea587e08104f9762db2c164ff92e6c443
     ]
 
 }
+
+
+####
